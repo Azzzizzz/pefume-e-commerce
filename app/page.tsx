@@ -41,17 +41,35 @@ export default function Home() {
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-        {/* Background Image with Overlay */}
+        {/* Background Images */}
         <div className="absolute inset-0 z-0">
-          <Image
-            src="https://images.unsplash.com/photo-1666182951901-0b99915e189d?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bHV4dXJ5JTIwcGVyZnVtZSUyMGdvbGQlMjBwb2RpdW18ZW58MHx8MHx8fDA%3D"
-            alt="Luxury Perfume Background"
-            fill
-            className="object-cover opacity-70"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/50 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+          {/* Dark Mode Image */}
+          <div className="hidden dark:block absolute inset-0">
+            <Image
+              src="https://images.unsplash.com/photo-1666182951901-0b99915e189d?fm=jpg&q=80&w=3000&ixlib=rb-4.1.0"
+              alt="Luxury Perfume Dark"
+              fill
+              className="object-cover opacity-80"
+              priority
+            />
+            {/* Subtle gradient only on the left for text readability */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#05060a]/90 via-[#05060a]/40 to-transparent via-50%" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#05060a] via-transparent to-transparent opacity-60" />
+          </div>
+
+          {/* Light Mode Image */}
+          <div className="block dark:hidden absolute inset-0">
+            <Image
+              src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=2500&auto=format&fit=crop"
+              alt="Luxury Perfume Light"
+              fill
+              className="object-cover opacity-100"
+              priority
+            />
+            {/* Very subtle gradient for light mode */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#F9F7F2]/80 via-[#F9F7F2]/30 to-transparent via-30%" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#F9F7F2] via-transparent to-transparent opacity-10" />
+          </div>
         </div>
 
         <div className="container mx-auto px-4 relative z-10 pt-20">
@@ -63,35 +81,35 @@ export default function Home() {
           >
             <motion.span
               variants={fadeInUp}
-              className="block text-primary uppercase tracking-[0.2em] mb-4 text-sm font-medium"
+              className="block text-primary uppercase tracking-[0.25em] mb-6 text-sm font-bold"
             >
               Est. 2024 • Night Bazaar Collection
             </motion.span>
             <motion.h1
               variants={fadeInUp}
-              className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold leading-tight mb-6 text-foreground drop-shadow-lg"
+              className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold leading-[1.1] mb-8 text-foreground"
             >
               Scents of the <br />
-              <span className="text-primary italic drop-shadow-md">Unknown</span>
+              <span className="text-primary italic">Unknown</span>
             </motion.h1>
             <motion.p
               variants={fadeInUp}
-              className="text-lg md:text-xl text-muted-foreground mb-10 max-w-lg leading-relaxed drop-shadow-md font-medium"
+              className="text-lg md:text-xl text-muted-foreground mb-10 max-w-lg leading-relaxed font-medium"
             >
               Discover a curated selection of rare, artisanal fragrances inspired by the
-              mysteries of the night.
+              mysteries of the night and the clarity of dawn.
             </motion.p>
             <motion.div variants={fadeInUp} className="flex flex-wrap gap-4">
               <Button
                 size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-6 rounded-none shadow-[0_0_20px_-5px_rgba(224,182,129,0.3)] hover:shadow-[0_0_30px_-5px_rgba(224,182,129,0.5)] transition-shadow"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-10 py-7 rounded-full shadow-[0_0_20px_-5px_rgba(224,182,129,0.3)] hover:shadow-[0_0_30px_-5px_rgba(224,182,129,0.5)] transition-all duration-300"
               >
                 Shop Collection
               </Button>
               <Button
                 variant="outline"
                 size="lg"
-                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground text-lg px-8 py-6 rounded-none backdrop-blur-sm bg-background/10"
+                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground text-lg px-10 py-7 rounded-full backdrop-blur-sm bg-background/10 transition-all duration-300"
               >
                 Discover Your Scent
               </Button>

@@ -2,15 +2,19 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { ShoppingBag, Menu, X, Search } from "lucide-react";
+import { ShoppingBag, Menu, X, Search, Sun, Moon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { useTheme } from "next-themes";
 
 export function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const { setTheme, resolvedTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
+        setMounted(true);
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50);
         };
@@ -60,6 +64,19 @@ export function Header() {
 
                     {/* Icons */}
                     <div className="flex items-center gap-4">
+                        {mounted && (
+                            <button
+                                onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+                                className="text-foreground hover:text-primary transition-colors"
+                                aria-label="Toggle Theme"
+                            >
+                                {resolvedTheme === "dark" ? (
+                                    <Sun className="w-5 h-5" />
+                                ) : (
+                                    <Moon className="w-5 h-5" />
+                                )}
+                            </button>
+                        )}
                         <button className="text-foreground hover:text-primary transition-colors">
                             <Search className="w-5 h-5" />
                         </button>

@@ -43,102 +43,114 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-/* Default to dark theme values even in root, or just ensure dark class is used */
 :root {
   --radius: 0.5rem;
 
+  /* Light Theme Colors (Daylight Luxury) */
+  --background: #F9F7F2;
+  /* Warm Alabaster */
+  --foreground: #1A1A1A;
+  /* Soft Black */
+
+  --card: #FFFFFF;
+  --card-foreground: #1A1A1A;
+
+  --popover: #FFFFFF;
+  --popover-foreground: #1A1A1A;
+
+  --primary: #B08D55;
+  /* Rich Gold */
+  --primary-foreground: #FFFFFF;
+
+  --secondary: #F2EBE0;
+  /* Light Beige */
+  --secondary-foreground: #1A1A1A;
+
+  --muted: #E5E0D8;
+  /* Warm Grey */
+  --muted-foreground: #8A8175;
+
+  --accent: #F2EBE0;
+  --accent-foreground: #1A1A1A;
+
+  --destructive: #ef4444;
+  --destructive-foreground: #fafafa;
+
+  --border: #E5E0D8;
+  --input: #E5E0D8;
+  --ring: #B08D55;
+
+  --chart-1: #B08D55;
+  --chart-2: #8A8175;
+  --chart-3: #1A1A1A;
+  --chart-4: #E5E0D8;
+  --chart-5: #F2EBE0;
+
+  --sidebar-background: #F9F7F2;
+  --sidebar-foreground: #1A1A1A;
+  --sidebar-primary: #B08D55;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #F2EBE0;
+  --sidebar-accent-foreground: #1A1A1A;
+  --sidebar-border: #E5E0D8;
+  --sidebar-ring: #B08D55;
+}
+
+.dark {
   /* Dark Theme Colors (Night Bazaar) */
   --background: #05060a;
   --foreground: #f9f3ea;
 
   --card: rgba(16, 18, 26, 0.8);
-  /* Slightly transparent for glassmorphism */
+  /* Glassmorphism */
   --card-foreground: #f9f3ea;
 
   --popover: #10121a;
   --popover-foreground: #f9f3ea;
 
   --primary: #e0b681;
-  /* Gold */
+  /* Lighter Gold */
   --primary-foreground: #05060a;
 
-  --secondary: #1a1d2d;
+  --secondary: #1a1d26;
   --secondary-foreground: #f9f3ea;
 
-  --muted: #1a1d2d;
+  --muted: #1a1d26;
   --muted-foreground: #b0a293;
-  /* Lightened for better readability */
 
-  --accent: #e0b681;
-  --accent-foreground: #05060a;
+  --accent: #1a1d26;
+  --accent-foreground: #f9f3ea;
 
   --destructive: #7f1d1d;
   --destructive-foreground: #f9f3ea;
 
-  --border: #26293a;
-  --input: #26293a;
+  --border: #2a2d36;
+  --input: #2a2d36;
   --ring: #e0b681;
 
   --chart-1: #e0b681;
-  --chart-2: #f1d3a2;
-  --chart-3: #9b8c7a;
-  --chart-4: #26293a;
-  --chart-5: #05060a;
+  --chart-2: #2a9d8f;
+  --chart-3: #e9c46a;
+  --chart-4: #f4a261;
+  --chart-5: #e76f51;
 
-  --sidebar: #10121a;
+  --sidebar-background: #05060a;
   --sidebar-foreground: #f9f3ea;
   --sidebar-primary: #e0b681;
   --sidebar-primary-foreground: #05060a;
-  --sidebar-accent: #1a1d2d;
+  --sidebar-accent: #1a1d26;
   --sidebar-accent-foreground: #f9f3ea;
-  --sidebar-border: #26293a;
-  --sidebar-ring: #e0b681;
-}
-
-.dark {
-  /* Same as root since we are enforcing dark mode style */
-  --background: #05060a;
-  --foreground: #f9f3ea;
-  --card: #10121a;
-  --card-foreground: #f9f3ea;
-  --popover: #10121a;
-  --popover-foreground: #f9f3ea;
-  --primary: #e0b681;
-  --primary-foreground: #05060a;
-  --secondary: #1a1d2d;
-  --secondary-foreground: #f9f3ea;
-  --muted: #1a1d2d;
-  --muted-foreground: #9b8c7a;
-  --accent: #e0b681;
-  --accent-foreground: #05060a;
-  --destructive: #7f1d1d;
-  --destructive-foreground: #f9f3ea;
-  --border: #26293a;
-  --input: #26293a;
-  --ring: #e0b681;
-  --chart-1: #e0b681;
-  --chart-2: #f1d3a2;
-  --chart-3: #9b8c7a;
-  --chart-4: #26293a;
-  --chart-5: #05060a;
-  --sidebar: #10121a;
-  --sidebar-foreground: #f9f3ea;
-  --sidebar-primary: #e0b681;
-  --sidebar-primary-foreground: #05060a;
-  --sidebar-accent: #1a1d2d;
-  --sidebar-accent-foreground: #f9f3ea;
-  --sidebar-border: #26293a;
+  --sidebar-border: #2a2d36;
   --sidebar-ring: #e0b681;
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
 
   body {
     @apply bg-background text-foreground;
-    /* Add subtle noise texture if desired, or handle in layout */
   }
 
   h1,
