@@ -4,7 +4,7 @@ export interface Perfume {
   name: string;
   brand: string;
   price: number;
-  image: string;
+  images: string[]; // Changed from image: string
   notes: string[];
   intensity: "soft" | "moderate" | "strong";
   longevity: number; // 1-5
@@ -13,19 +13,26 @@ export interface Perfume {
   badge?: string;
 }
 
+
 export const PERFUMES: Perfume[] = [
+  // --- Dark Collection ---
   {
     id: "1",
     slug: "midnight-saffron",
     name: "Midnight Saffron",
     brand: "L'Obscur",
     price: 185,
-    image: "https://images.unsplash.com/photo-1737920459846-2d0318700658?fm=jpg&q=60&w=800&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bHV4dXJ5JTIwcGVyZnVtZSUyMGRhcmt8ZW58MHx8MHx8fDA%3D",
+    images: [
+      "https://images.unsplash.com/photo-1666182951901-0b99915e189d?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1666182951901-0b99915e189d?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1666182951901-0b99915e189d?q=80&w=800&auto=format&fit=crop",
+    ],
     notes: ["Saffron", "Black Rose", "Oud", "Amber"],
     intensity: "strong",
     longevity: 5,
     sillage: 4,
-    description: "A mysterious blend of rare saffron and deep oud, evoking the secrets of a moonlit bazaar.",
+    description:
+      "A mysterious blend of rare saffron and deep oud, evoking the secrets of a moonlit bazaar.",
     badge: "Bestseller",
   },
   {
@@ -34,12 +41,17 @@ export const PERFUMES: Perfume[] = [
     name: "Velvet Smoke",
     brand: "L'Obscur",
     price: 160,
-    image: "https://images.unsplash.com/photo-1759793499938-904b23d7ddae?fm=jpg&q=60&w=800&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGx1eHVyeSUyMHBlcmZ1bWUlMjBkYXJrfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=800&auto=format&fit=crop",
+    ],
     notes: ["Tobacco", "Vanilla", "Cedarwood", "Leather"],
     intensity: "moderate",
     longevity: 4,
     sillage: 3,
-    description: "Warm tobacco leaves wrapped in creamy vanilla and worn leather. A scent for the contemplative soul.",
+    description:
+      "Warm tobacco leaves wrapped in creamy vanilla and worn leather. A scent for the contemplative soul.",
   },
   {
     id: "3",
@@ -47,12 +59,17 @@ export const PERFUMES: Perfume[] = [
     name: "Desert Rose",
     brand: "L'Obscur",
     price: 195,
-    image: "https://images.unsplash.com/photo-1760860992203-85ca32536788?fm=jpg&q=60&w=800&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGx1eHVyeSUyMHBlcmZ1bWUlMjBkYXJrfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1630512873749-85ccf5bb1678?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1630512873749-85ccf5bb1678?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1630512873749-85ccf5bb1678?q=80&w=800&auto=format&fit=crop",
+    ],
     notes: ["Damask Rose", "Incense", "Patchouli", "Myrrh"],
     intensity: "strong",
     longevity: 5,
     sillage: 5,
-    description: "An intense, spicy rose blooming amidst the swirling sands of an ancient desert.",
+    description:
+      "An intense, spicy rose blooming amidst the swirling sands of an ancient desert.",
     badge: "New Arrival",
   },
   {
@@ -61,12 +78,17 @@ export const PERFUMES: Perfume[] = [
     name: "Golden Amber",
     brand: "L'Obscur",
     price: 150,
-    image: "https://images.unsplash.com/photo-1630512873379-e8c6cce16158?fm=jpg&q=60&w=800&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGx1eHVyeSUyMHBlcmZ1bWUlMjBkYXJrfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1630512873379-e8c6cce16158?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1630512873379-e8c6cce16158?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1630512873379-e8c6cce16158?q=80&w=800&auto=format&fit=crop",
+    ],
     notes: ["Amber", "Benzoin", "Labdanum", "Tonka Bean"],
     intensity: "moderate",
     longevity: 4,
     sillage: 4,
-    description: "Liquid gold. A resinous, sweet, and enveloping embrace that lingers like a sunset.",
+    description:
+      "Liquid gold. A resinous, sweet, and enveloping embrace that lingers like a sunset.",
   },
   {
     id: "5",
@@ -74,12 +96,17 @@ export const PERFUMES: Perfume[] = [
     name: "Noir Citrus",
     brand: "L'Obscur",
     price: 140,
-    image: "https://images.unsplash.com/photo-1659167530799-982cfce69360?fm=jpg&q=60&w=800&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fGx1eHVyeSUyMHBlcmZ1bWUlMjBkYXJrfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1666182951901-0b99915e189d?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1666182951901-0b99915e189d?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1666182951901-0b99915e189d?q=80&w=800&auto=format&fit=crop",
+    ],
     notes: ["Bergamot", "Black Pepper", "Vetiver", "Neroli"],
     intensity: "soft",
     longevity: 3,
     sillage: 2,
-    description: "A shadow of brightness. Crisp citrus notes cut through the darkness of night.",
+    description:
+      "A shadow of brightness. Crisp citrus notes cut through the darkness of night.",
   },
   {
     id: "6",
@@ -87,12 +114,17 @@ export const PERFUMES: Perfume[] = [
     name: "Spiced Sandalwood",
     brand: "L'Obscur",
     price: 175,
-    image: "https://images.unsplash.com/photo-1761329842950-f3551938e4da?fm=jpg&q=60&w=800&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzF8fGx1eHVyeSUyMHBlcmZ1bWUlMjBkYXJrfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=800&auto=format&fit=crop",
+    ],
     notes: ["Sandalwood", "Cardamom", "Cinnamon", "Musk"],
     intensity: "moderate",
     longevity: 4,
     sillage: 3,
-    description: "Creamy sandalwood spiced with exotic cardamom and cinnamon. Comforting yet intriguing.",
+    description:
+      "Creamy sandalwood spiced with exotic cardamom and cinnamon. Comforting yet intriguing.",
     badge: "Limited Edition",
   },
   {
@@ -101,12 +133,17 @@ export const PERFUMES: Perfume[] = [
     name: "Royal Oud",
     brand: "L'Obscur",
     price: 220,
-    image: "https://images.unsplash.com/photo-1630512873749-85ccf5bb1678?fm=jpg&q=60&w=800&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzV8fGx1eHVyeSUyMHBlcmZ1bWUlMjBkYXJrfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1630512873379-e8c6cce16158?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1630512873379-e8c6cce16158?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1630512873379-e8c6cce16158?q=80&w=800&auto=format&fit=crop",
+    ],
     notes: ["Agarwood", "Rosewood", "Sandalwood", "Amber"],
     intensity: "strong",
     longevity: 5,
     sillage: 5,
-    description: "The scent of kings. A pure, unadulterated oud experience for the connoisseur.",
+    description:
+      "The scent of kings. A pure, unadulterated oud experience for the connoisseur.",
   },
   {
     id: "8",
@@ -114,11 +151,385 @@ export const PERFUMES: Perfume[] = [
     name: "Jasmine Night",
     brand: "L'Obscur",
     price: 165,
-    image: "https://images.unsplash.com/photo-1761845047498-56827f416735?fm=jpg&q=60&w=800&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzl8fGx1eHVyeSUyMHBlcmZ1bWUlMjBkYXJrfGVufDB8fDB8fHww",
+    images: [
+      "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=800&auto=format&fit=crop",
+    ],
     notes: ["Jasmine Sambac", "Tuberose", "Ylang Ylang", "Vanilla"],
     intensity: "strong",
     longevity: 4,
     sillage: 4,
-    description: "Intoxicating white florals that bloom only under the cover of darkness.",
+    description:
+      "Intoxicating white florals that bloom only under the cover of darkness.",
+  },
+
+  // --- Light Collection ---
+  {
+    id: "9",
+    slug: "morning-dew",
+    name: "Morning Dew",
+    brand: "Lumière",
+    price: 145,
+    images: [
+      "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop",
+    ],
+    notes: ["Green Tea", "Lily of the Valley", "White Musk", "Cucumber"],
+    intensity: "soft",
+    longevity: 3,
+    sillage: 2,
+    description:
+      "As fresh as the first light of dawn. Crisp green notes meet delicate white florals.",
+    badge: "Light & Airy",
+  },
+  {
+    id: "10",
+    slug: "citrus-bloom",
+    name: "Citrus Bloom",
+    brand: "Lumière",
+    price: 155,
+    images: [
+      "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop",
+    ],
+    notes: ["Mandarin", "Orange Blossom", "Honey", "Jasmine"],
+    intensity: "moderate",
+    longevity: 4,
+    sillage: 3,
+    description:
+      "A burst of sunshine. Sweet mandarin and honeyed blossoms create a radiant aura.",
+  },
+  {
+    id: "11",
+    slug: "white-linen",
+    name: "White Linen",
+    brand: "Lumière",
+    price: 135,
+    images: [
+      "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop",
+    ],
+    notes: ["Cotton Flower", "Aldehydes", "White Rose", "Sandalwood"],
+    intensity: "soft",
+    longevity: 3,
+    sillage: 2,
+    description:
+      "Clean, crisp, and comforting. The scent of sun-dried linens on a summer breeze.",
+  },
+  {
+    id: "12",
+    slug: "peony-blush",
+    name: "Peony Blush",
+    brand: "Lumière",
+    price: 165,
+    images: [
+      "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=800&auto=format&fit=crop",
+    ],
+    notes: ["Peony", "Red Apple", "Rose", "Suede"],
+    intensity: "moderate",
+    longevity: 4,
+    sillage: 3,
+    description:
+      "A romantic bouquet of peonies and soft suede. Feminine, elegant, and timeless.",
+    badge: "Romance",
+  },
+  {
+    id: "13",
+    slug: "ocean-mist",
+    name: "Ocean Mist",
+    brand: "Lumière",
+    price: 140,
+    images: [
+      "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop",
+    ],
+    notes: ["Sea Salt", "Sage", "Driftwood", "Grapefruit"],
+    intensity: "moderate",
+    longevity: 4,
+    sillage: 3,
+    description:
+      "The essence of the coast. Salty air, woody sage, and a hint of citrus zest.",
+  },
+  {
+    id: "14",
+    slug: "vanilla-sky",
+    name: "Vanilla Sky",
+    brand: "Lumière",
+    price: 150,
+    images: [
+      "https://images.unsplash.com/photo-1630512873749-85ccf5bb1678?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1630512873749-85ccf5bb1678?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1630512873749-85ccf5bb1678?q=80&w=800&auto=format&fit=crop",
+    ],
+    notes: ["Vanilla Bean", "Coconut Milk", "Orchid", "Musk"],
+    intensity: "moderate",
+    longevity: 4,
+    sillage: 3,
+    description:
+      "Creamy, dreamy, and comforting. A gourmand delight that wraps you in warmth.",
+  },
+  {
+    id: "15",
+    slug: "lavender-haze",
+    name: "Lavender Haze",
+    brand: "Lumière",
+    price: 130,
+    images: [
+      "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=800&auto=format&fit=crop",
+    ],
+    notes: ["Lavender", "Bergamot", "Tonka Bean", "White Amber"],
+    intensity: "soft",
+    longevity: 3,
+    sillage: 2,
+    description:
+      "Calming French lavender sweetened with tonka bean. A serene escape.",
+  },
+  {
+    id: "16",
+    slug: "golden-pear",
+    name: "Golden Pear",
+    brand: "Lumière",
+    price: 155,
+    images: [
+      "https://images.unsplash.com/photo-1630512873379-e8c6cce16158?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1630512873379-e8c6cce16158?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1630512873379-e8c6cce16158?q=80&w=800&auto=format&fit=crop",
+    ],
+    notes: ["Pear", "Freesia", "Patchouli", "Rose"],
+    intensity: "moderate",
+    longevity: 4,
+    sillage: 3,
+    description:
+      "Juicy, ripe pears surrounded by white freesias. A quintessentially English scent.",
+    badge: "Fruity",
+  },
+  {
+    id: "17",
+    slug: "cherry-blossom",
+    name: "Cherry Blossom",
+    brand: "Lumière",
+    price: 145,
+    images: [
+      "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=800&auto=format&fit=crop",
+    ],
+    notes: ["Cherry Blossom", "Rose", "Mimosa", "White Musk"],
+    intensity: "soft",
+    longevity: 3,
+    sillage: 2,
+    description:
+      "Delicate pink petals dancing in the wind. Soft, floral, and ephemeral.",
+  },
+  {
+    id: "18",
+    slug: "fig-leaf",
+    name: "Fig & Leaf",
+    brand: "Lumière",
+    price: 160,
+    images: [
+      "https://images.unsplash.com/photo-1759793499938-904b23d7ddae?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1759793499938-904b23d7ddae?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1759793499938-904b23d7ddae?q=80&w=800&auto=format&fit=crop",
+    ],
+    notes: ["Fig Leaf", "Fig Milk", "Cedar", "Coconut"],
+    intensity: "moderate",
+    longevity: 4,
+    sillage: 3,
+    description:
+      "Green, milky, and woody. Captures the entire fig tree from leaf to fruit.",
+  },
+  {
+    id: "19",
+    slug: "crystal-water",
+    name: "Crystal Water",
+    brand: "Lumière",
+    price: 135,
+    images: [
+      "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop",
+    ],
+    notes: ["Water Lotus", "Lemon", "Mint", "Cedar"],
+    intensity: "soft",
+    longevity: 3,
+    sillage: 2,
+    description:
+      "Pure, transparent, and revitalizing. Like a cool mountain stream.",
+  },
+  {
+    id: "20",
+    slug: "apricot-sun",
+    name: "Apricot Sun",
+    brand: "Lumière",
+    price: 150,
+    images: [
+      "https://images.unsplash.com/photo-1630512873379-e8c6cce16158?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1630512873379-e8c6cce16158?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1630512873379-e8c6cce16158?q=80&w=800&auto=format&fit=crop",
+    ],
+    notes: ["Apricot", "Osmanthus", "Tea", "Honey"],
+    intensity: "moderate",
+    longevity: 4,
+    sillage: 3,
+    description:
+      "Fuzzy apricot skin and floral tea notes. Warm, fruity, and sophisticated.",
+  },
+  {
+    id: "21",
+    slug: "white-tea-ginger",
+    name: "White Tea & Ginger",
+    brand: "Lumière",
+    price: 140,
+    images: [
+      "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop",
+    ],
+    notes: ["White Tea", "Ginger", "Bergamot", "Musk"],
+    intensity: "soft",
+    longevity: 3,
+    sillage: 2,
+    description:
+      "Soothing and spa-like. A gentle blend of delicate tea and zesty ginger.",
+    badge: "Spa Day",
+  },
+  {
+    id: "22",
+    slug: "magnolia-breeze",
+    name: "Magnolia Breeze",
+    brand: "Lumière",
+    price: 160,
+    images: [
+      "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=800&auto=format&fit=crop",
+    ],
+    notes: ["Magnolia", "Lemon", "Sandalwood", "Musk"],
+    intensity: "moderate",
+    longevity: 4,
+    sillage: 3,
+    description: "Creamy magnolia blooms with a touch of citrus brightness.",
+  },
+  {
+    id: "23",
+    slug: "cotton-clouds",
+    name: "Cotton Clouds",
+    brand: "Lumière",
+    price: 130,
+    images: [
+      "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop",
+    ],
+    notes: ["Cotton", "White Musk", "Iris", "Vanilla"],
+    intensity: "soft",
+    longevity: 3,
+    sillage: 2,
+    description:
+      "Soft, fluffy, and powdery. Like wrapping yourself in a cloud.",
+  },
+
+  // --- New Dark Collection ---
+  {
+    id: "24",
+    slug: "obsidian-night",
+    name: "Obsidian Night",
+    brand: "L'Obscur",
+    price: 190,
+    images: [
+      "https://images.unsplash.com/photo-1666182951901-0b99915e189d?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1666182951901-0b99915e189d?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1666182951901-0b99915e189d?q=80&w=800&auto=format&fit=crop",
+    ],
+    notes: ["Black Pepper", "Incense", "Ebony Wood", "Leather"],
+    intensity: "strong",
+    longevity: 5,
+    sillage: 5,
+    description:
+      "Dark, smoky, and intense. A scent for the deepest hours of the night.",
+    badge: "Intense",
+  },
+  {
+    id: "25",
+    slug: "crimson-elixir",
+    name: "Crimson Elixir",
+    brand: "L'Obscur",
+    price: 180,
+    images: [
+      "https://images.unsplash.com/photo-1630512873749-85ccf5bb1678?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1630512873749-85ccf5bb1678?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1630512873749-85ccf5bb1678?q=80&w=800&auto=format&fit=crop",
+    ],
+    notes: ["Red Wine", "Rose", "Patchouli", "Clove"],
+    intensity: "strong",
+    longevity: 5,
+    sillage: 4,
+    description:
+      "A heady, intoxicating blend of dark red roses and spiced wine.",
+  },
+  {
+    id: "26",
+    slug: "tobacco-vanille-noir",
+    name: "Tobacco Vanille Noir",
+    brand: "L'Obscur",
+    price: 200,
+    images: [
+      "https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=800&auto=format&fit=crop",
+    ],
+    notes: ["Tobacco Leaf", "Vanilla Absolute", "Cacao", "Dried Fruits"],
+    intensity: "strong",
+    longevity: 5,
+    sillage: 5,
+    description:
+      "Rich, opulent, and sweet. A luxurious blend of fine tobacco and dark vanilla.",
+    badge: "Luxury",
+  },
+  {
+    id: "27",
+    slug: "mystic-forest",
+    name: "Mystic Forest",
+    brand: "L'Obscur",
+    price: 170,
+    images: [
+      "https://images.unsplash.com/photo-1759793499938-904b23d7ddae?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1759793499938-904b23d7ddae?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1759793499938-904b23d7ddae?q=80&w=800&auto=format&fit=crop",
+    ],
+    notes: ["Pine", "Oakmoss", "Resin", "Soil"],
+    intensity: "moderate",
+    longevity: 4,
+    sillage: 4,
+    description:
+      "The scent of an ancient forest after rain. Earthy, woody, and profound.",
+  },
+  {
+    id: "28",
+    slug: "amber-nights",
+    name: "Amber Nights",
+    brand: "L'Obscur",
+    price: 175,
+    images: [
+      "https://images.unsplash.com/photo-1630512873379-e8c6cce16158?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1630512873379-e8c6cce16158?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1630512873379-e8c6cce16158?q=80&w=800&auto=format&fit=crop",
+    ],
+    notes: ["Amber", "Musk", "Patchouli", "Vanilla"],
+    intensity: "moderate",
+    longevity: 4,
+    sillage: 4,
+    description:
+      "Warm, sensual, and inviting. A classic amber scent for the modern era.",
   },
 ];

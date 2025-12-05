@@ -18,6 +18,7 @@ export default function ProductPage() {
     const slug = params.slug as string;
     const product = PERFUMES.find((p) => p.slug === slug);
     const [quantity, setQuantity] = useState(1);
+    const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
     if (!product) {
         return (
@@ -46,21 +47,41 @@ export default function ProductPage() {
                 </Link>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 mb-24">
-                    {/* Product Image */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.6 }}
-                        className="relative aspect-[3/4] bg-card rounded-sm overflow-hidden"
-                    >
-                        <Image
-                            src={product.image}
-                            alt={product.name}
-                            fill
-                            className="object-cover"
-                            priority
-                        />
-                    </motion.div>
+                    {/* Product Image Gallery */}
+                    <div className="flex flex-col gap-4">
+                        <motion.div
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.6 }}
+                            className="relative aspect-[3/4] bg-card rounded-sm overflow-hidden"
+                        >
+                            <Image
+                                src={product.images[selectedImageIndex]}
+                                alt={product.name}
+                                fill
+                                className="object-cover"
+                                priority
+                            />
+                        </motion.div>
+                        {/* Thumbnails */}
+                        <div className="flex gap-4 overflow-x-auto pb-2">
+                            {product.images.map((img, idx) => (
+                                <button
+                                    key={idx}
+                                    onClick={() => setSelectedImageIndex(idx)}
+                                    className={`relative w-20 h-20 flex-shrink-0 rounded-sm overflow-hidden border-2 transition-all ${selectedImageIndex === idx ? "border-primary" : "border-transparent opacity-70 hover:opacity-100"
+                                        }`}
+                                >
+                                    <Image
+                                        src={img}
+                                        alt={`${product.name} view ${idx + 1}`}
+                                        fill
+                                        className="object-cover"
+                                    />
+                                </button>
+                            ))}
+                        </div>
+                    </div>
 
                     {/* Product Details */}
                     <motion.div

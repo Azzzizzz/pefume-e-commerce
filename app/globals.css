@@ -46,54 +46,54 @@
 :root {
   --radius: 0.5rem;
 
-  /* Light Theme Colors (Daylight Luxury) */
-  --background: #F9F7F2;
-  /* Warm Alabaster */
-  --foreground: #1A1A1A;
-  /* Soft Black */
+  /* Light Theme Colors (User Custom - Soft Beige & Gold) */
+  --background: #F9F8F6;
+  /* User Provided Base */
+  --foreground: #1F1F1F;
+  /* Soft Charcoal (Kept for contrast) */
 
   --card: #FFFFFF;
-  --card-foreground: #1A1A1A;
+  --card-foreground: #1F1F1F;
 
   --popover: #FFFFFF;
-  --popover-foreground: #1A1A1A;
+  --popover-foreground: #1F1F1F;
 
-  --primary: #B08D55;
-  /* Rich Gold */
+  --primary: #C9B59C;
+  /* User Provided Accent */
   --primary-foreground: #FFFFFF;
 
-  --secondary: #F2EBE0;
-  /* Light Beige */
-  --secondary-foreground: #1A1A1A;
+  --secondary: #EFE9E3;
+  /* User Provided Secondary */
+  --secondary-foreground: #1F1F1F;
 
-  --muted: #E5E0D8;
-  /* Warm Grey */
-  --muted-foreground: #8A8175;
+  --muted: #D9CFC7;
+  /* User Provided Muted */
+  --muted-foreground: #6B6B6B;
 
-  --accent: #F2EBE0;
-  --accent-foreground: #1A1A1A;
+  --accent: #EFE9E3;
+  --accent-foreground: #1F1F1F;
 
   --destructive: #ef4444;
   --destructive-foreground: #fafafa;
 
-  --border: #E5E0D8;
-  --input: #E5E0D8;
-  --ring: #B08D55;
+  --border: #D9CFC7;
+  --input: #D9CFC7;
+  --ring: #C9B59C;
 
-  --chart-1: #B08D55;
-  --chart-2: #8A8175;
-  --chart-3: #1A1A1A;
-  --chart-4: #E5E0D8;
-  --chart-5: #F2EBE0;
+  --chart-1: #C9B59C;
+  --chart-2: #D9CFC7;
+  --chart-3: #1F1F1F;
+  --chart-4: #EFE9E3;
+  --chart-5: #F9F8F6;
 
-  --sidebar-background: #F9F7F2;
-  --sidebar-foreground: #1A1A1A;
-  --sidebar-primary: #B08D55;
+  --sidebar-background: #F9F8F6;
+  --sidebar-foreground: #1F1F1F;
+  --sidebar-primary: #C9B59C;
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #F2EBE0;
-  --sidebar-accent-foreground: #1A1A1A;
-  --sidebar-border: #E5E0D8;
-  --sidebar-ring: #B08D55;
+  --sidebar-accent: #EFE9E3;
+  --sidebar-accent-foreground: #1F1F1F;
+  --sidebar-border: #D9CFC7;
+  --sidebar-ring: #C9B59C;
 }
 
 .dark {

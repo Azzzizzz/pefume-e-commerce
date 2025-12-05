@@ -23,20 +23,33 @@ export function ProductCard({ perfume }: ProductCardProps) {
 
                     {/* Image Area */}
                     <div className="relative aspect-square w-full bg-muted/20 rounded-[1rem] overflow-hidden mb-4 group-hover:bg-muted/30 transition-colors duration-500">
-
+                        {/* Primary Image */}
                         <Image
-                            src={perfume.image}
+                            src={perfume.images[0]}
                             alt={perfume.name}
                             fill
-                            className="object-cover transition-transform duration-700 group-hover:scale-110 ease-out"
+                            className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:opacity-0 ease-out z-10"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-50" />
+                        {/* Secondary Image (Reveal on Hover) */}
+                        {perfume.images[1] && (
+                            <Image
+                                src={perfume.images[1]}
+                                alt={`${perfume.name} Alternate`}
+                                fill
+                                className="object-cover transition-all duration-700 scale-110 group-hover:scale-100 opacity-0 group-hover:opacity-100 ease-out z-0"
+                            />
+                        )}
+
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-50 z-20 pointer-events-none" />
 
                         {/* Pagination Dots (Bottom Center) */}
-                        <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5">
-                            <div className="w-1.5 h-1.5 rounded-full bg-white shadow-sm" />
-                            <div className="w-1.5 h-1.5 rounded-full bg-white/40" />
-                            <div className="w-1.5 h-1.5 rounded-full bg-white/40" />
+                        <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5 z-30">
+                            {perfume.images.slice(0, 3).map((_, idx) => (
+                                <div
+                                    key={idx}
+                                    className={`w-1.5 h-1.5 rounded-full shadow-sm transition-colors ${idx === 0 ? 'bg-white' : 'bg-white/40'}`}
+                                />
+                            ))}
                         </div>
                     </div>
 

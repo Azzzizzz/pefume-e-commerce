@@ -56,7 +56,7 @@ export default function CartPage() {
                             <div key={item.product.id} className="flex gap-6 p-4 bg-card border border-border/50 rounded-sm">
                                 <div className="relative w-24 h-32 bg-muted/20 flex-shrink-0">
                                     <Image
-                                        src={item.product.image}
+                                        src={item.product.images[0]}
                                         alt={item.product.name}
                                         fill
                                         className="object-cover"
