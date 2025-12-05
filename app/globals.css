@@ -54,49 +54,49 @@
   --radius: 0.5rem;
 
   /* ═══════════════════════════════════════════════════════════════
-     LIGHT MODE - Warm Ivory & Metallic Gold
+     LIGHT MODE - Warm Luxury with Rich Accents
      Inspired by haute couture fashion magazines
   ═══════════════════════════════════════════════════════════════ */
 
-  /* Base Colors */
-  --background: #FAF8F3;
-  --foreground: #2B2B2B;
+  /* Base Colors - Warmer, richer background */
+  --background: #F8F5EE;
+  --foreground: #1A1A1A;
 
-  /* Card & Popover */
+  /* Card & Popover - Distinct from background */
   --card: #FFFFFF;
-  --card-foreground: #2B2B2B;
+  --card-foreground: #1A1A1A;
   --popover: #FFFFFF;
-  --popover-foreground: #2B2B2B;
+  --popover-foreground: #1A1A1A;
 
-  /* Primary - Metallic Gold */
-  --primary: #C9A227;
+  /* Primary - Richer Gold */
+  --primary: #B8860B;
   --primary-foreground: #FFFFFF;
 
-  /* Secondary - Warm Cream */
-  --secondary: #F5F0E8;
-  --secondary-foreground: #2B2B2B;
+  /* Secondary - Warm Beige (for section backgrounds) */
+  --secondary: #EDE8DC;
+  --secondary-foreground: #1A1A1A;
 
-  /* Muted - Soft Taupe */
-  --muted: #E8E2D9;
-  --muted-foreground: #6B6358;
+  /* Muted - Warmer Taupe (better contrast) */
+  --muted: #E5DDD0;
+  --muted-foreground: #5C5347;
 
-  /* Accent - Soft Terracotta */
-  --accent: #E8B4A0;
-  --accent-foreground: #2B2B2B;
+  /* Accent - Warm Rose/Terracotta */
+  --accent: #D4A27C;
+  --accent-foreground: #1A1A1A;
 
   /* Utility Colors */
-  --destructive: #C44536;
+  --destructive: #B83B2E;
   --destructive-foreground: #FFFFFF;
-  --border: #E0DAD0;
-  --input: #E0DAD0;
-  --ring: #C9A227;
+  --border: #D8D0C4;
+  --input: #D8D0C4;
+  --ring: #B8860B;
 
-  /* Charts */
-  --chart-1: #C9A227;
-  --chart-2: #E8B4A0;
-  --chart-3: #2B2B2B;
-  --chart-4: #6B6358;
-  --chart-5: #B5A89A;
+  /* Charts - More vibrant */
+  --chart-1: #B8860B;
+  --chart-2: #D4A27C;
+  --chart-3: #1A1A1A;
+  --chart-4: #5C5347;
+  --chart-5: #A89888;
 
   /* Sidebar */
   --sidebar-background: #FAF8F3;

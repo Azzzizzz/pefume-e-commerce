@@ -174,8 +174,10 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════════════
           COLLECTIONS SECTION - Magazine Style Grid
       ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-24 md:py-32 relative">
-        <div className="absolute inset-0 bg-gradient-hero opacity-50 pointer-events-none" />
+      <section className="py-24 md:py-32 relative bg-secondary/40">
+        {/* Decorative top border */}
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-hero opacity-30 pointer-events-none" />
 
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
@@ -259,7 +261,9 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════════════
           FEATURED PRODUCTS - Horizontal Scroll
       ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-24 md:py-32 bg-muted/20">
+      <section className="py-24 md:py-32 bg-card border-y border-border/50">
+        {/* Subtle decorative gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-primary/5 pointer-events-none" />
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
             <div>
@@ -294,46 +298,49 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════════════
           EXPLORE BY NOTE
       ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-24 md:py-32 container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
-          <div>
-            <span className="text-overline text-primary mb-4 block">Your Preferences</span>
-            <h2>Explore by Note</h2>
-            <p className="text-muted-foreground mt-2">Filter our collection by your favorite scents.</p>
+      <section className="py-24 md:py-32 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+            <div>
+              <span className="text-overline text-primary mb-4 block">Your Preferences</span>
+              <h2>Explore by Note</h2>
+              <p className="text-muted-foreground mt-2">Filter our collection by your favorite scents.</p>
+            </div>
+            <Link
+              href="/collection"
+              className="text-primary hover:text-primary/80 transition-colors flex items-center gap-2 group underline-reveal"
+            >
+              View All
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
           </div>
-          <Link
-            href="/collection"
-            className="text-primary hover:text-primary/80 transition-colors flex items-center gap-2 group underline-reveal"
+
+          <div className="mb-12">
+            <NotesFilter
+              notes={allNotes}
+              selectedNote={selectedNote}
+              onSelectNote={setSelectedNote}
+            />
+          </div>
+
+          <motion.div
+            layout
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
           >
-            View All
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </Link>
+            {filteredPerfumes.slice(0, 8).map((perfume) => (
+              <ProductCard key={perfume.id} perfume={perfume} />
+            ))}
+          </motion.div>
         </div>
-
-        <div className="mb-12">
-          <NotesFilter
-            notes={allNotes}
-            selectedNote={selectedNote}
-            onSelectNote={setSelectedNote}
-          />
-        </div>
-
-        <motion.div
-          layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
-        >
-          {filteredPerfumes.slice(0, 8).map((perfume) => (
-            <ProductCard key={perfume.id} perfume={perfume} />
-          ))}
-        </motion.div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
           BRAND STORY - Editorial Style
       ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-24 md:py-32 bg-card/30 relative overflow-hidden">
-        {/* Background decorative element */}
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent pointer-events-none" />
+      <section className="py-24 md:py-32 bg-card relative overflow-hidden border-y border-border/50">
+        {/* Background decorative elements */}
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-accent/10 to-transparent pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-gradient-to-tr from-primary/5 to-transparent pointer-events-none" />
 
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
@@ -431,60 +438,64 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════════════
           TESTIMONIALS - Premium Cards
       ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-24 md:py-32 container mx-auto px-4">
-        <div className="text-center mb-16">
-          <span className="text-overline text-primary mb-4 block">Voices</span>
-          <h2>Whispers from our Patrons</h2>
-        </div>
+      <section className="py-24 md:py-32 bg-secondary/40">
+        {/* Decorative top border */}
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <span className="text-overline text-primary mb-4 block">Voices</span>
+            <h2>Whispers from our Patrons</h2>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          {[
-            {
-              text: "A fragrance that stops time. Absolutely mesmerizing. The way it unfolds on the skin is nothing short of poetic.",
-              author: "Elena R.",
-              role: "Fragrance Collector",
-            },
-            {
-              text: "The depth of the oud in Midnight Saffron is unlike anything I've ever experienced. Pure olfactory art.",
-              author: "Marcus T.",
-              role: "Fashion Editor",
-            },
-            {
-              text: "Finally, a perfume house that understands the art of subtlety and power. Each bottle tells a story.",
-              author: "Sarah L.",
-              role: "Creative Director",
-            },
-          ].map((testimonial, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.15, duration: 0.6 }}
-              className="group bg-card p-8 md:p-10 border border-border/30 rounded-2xl hover:border-primary/30 transition-all duration-500 hover:shadow-luxury"
-            >
-              {/* Stars */}
-              <div className="flex gap-1 mb-6">
-                {[...Array(5)].map((_, j) => (
-                  <Star
-                    key={j}
-                    className="w-4 h-4 text-primary fill-primary"
-                  />
-                ))}
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            {[
+              {
+                text: "A fragrance that stops time. Absolutely mesmerizing. The way it unfolds on the skin is nothing short of poetic.",
+                author: "Elena R.",
+                role: "Fragrance Collector",
+              },
+              {
+                text: "The depth of the oud in Midnight Saffron is unlike anything I've ever experienced. Pure olfactory art.",
+                author: "Marcus T.",
+                role: "Fashion Editor",
+              },
+              {
+                text: "Finally, a perfume house that understands the art of subtlety and power. Each bottle tells a story.",
+                author: "Sarah L.",
+                role: "Creative Director",
+              },
+            ].map((testimonial, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.15, duration: 0.6 }}
+                className="group bg-card p-8 md:p-10 border border-border/30 rounded-2xl hover:border-primary/30 transition-all duration-500 hover:shadow-luxury"
+              >
+                {/* Stars */}
+                <div className="flex gap-1 mb-6">
+                  {[...Array(5)].map((_, j) => (
+                    <Star
+                      key={j}
+                      className="w-4 h-4 text-primary fill-primary"
+                    />
+                  ))}
+                </div>
 
-              {/* Quote */}
-              <p className="text-lg font-serif italic text-foreground/90 mb-8 leading-relaxed">
-                &ldquo;{testimonial.text}&rdquo;
-              </p>
+                {/* Quote */}
+                <p className="text-lg font-serif italic text-foreground/90 mb-8 leading-relaxed">
+                  &ldquo;{testimonial.text}&rdquo;
+                </p>
 
-              {/* Author */}
-              <div>
-                <span className="block font-medium text-foreground">{testimonial.author}</span>
-                <span className="text-sm text-muted-foreground">{testimonial.role}</span>
-              </div>
-            </motion.div>
-          ))}
+                {/* Author */}
+                <div>
+                  <span className="block font-medium text-foreground">{testimonial.author}</span>
+                  <span className="text-sm text-muted-foreground">{testimonial.role}</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
