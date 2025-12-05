@@ -2,95 +2,205 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Perfume } from "@/data/perfumes";
 import { Badge } from "@/components/ui/badge";
-import { Heart } from "lucide-react";
+import { Heart, Clock, Wind } from "lucide-react";
+import { useState, useRef } from "react";
 
 interface ProductCardProps {
     perfume: Perfume;
+    featured?: boolean;
 }
 
-export function ProductCard({ perfume }: ProductCardProps) {
+export function ProductCard({ perfume, featured = false }: ProductCardProps) {
+    const [isHovered, setIsHovered] = useState(false);
+    const cardRef = useRef<HTMLDivElement>(null);
+
+    // 3D Tilt effect
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+
+    const mouseXSpring = useSpring(x, { stiffness: 300, damping: 30 });
+    const mouseYSpring = useSpring(y, { stiffness: 300, damping: 30 });
+
+    const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["5deg", "-5deg"]);
+    const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-5deg", "5deg"]);
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!cardRef.current) return;
+        const rect = cardRef.current.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        x.set((e.clientX - centerX) / rect.width);
+        y.set((e.clientY - centerY) / rect.height);
+    };
+
+    const handleMouseLeave = () => {
+        x.set(0);
+        y.set(0);
+        setIsHovered(false);
+    };
+
+    // Get intensity badge color
+    const getIntensityColor = () => {
+        switch (perfume.intensity) {
+            case "soft": return "bg-green-500/10 text-green-600 dark:text-green-400";
+            case "moderate": return "bg-amber-500/10 text-amber-600 dark:text-amber-400";
+            case "strong": return "bg-red-500/10 text-red-600 dark:text-red-400";
+        }
+    };
+
     return (
         <motion.div
-            whileHover={{ y: -5 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="group h-full"
+            ref={cardRef}
+            style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+            onMouseMove={handleMouseMove}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={handleMouseLeave}
+            className="group h-full perspective-1000"
         >
             <Link href={`/product/${perfume.slug}`} className="block h-full">
-                <div className="bg-card rounded-[1rem] p-2.5 h-full flex flex-col shadow-sm hover:shadow-xl transition-all duration-500 border border-border/50">
-
-                    {/* Image Area */}
-                    <div className="relative aspect-square w-full bg-muted/20 rounded-[1rem] overflow-hidden mb-4 group-hover:bg-muted/30 transition-colors duration-500">
+                <motion.div
+                    className={`
+                        relative bg-card h-full flex flex-col overflow-hidden
+                        border border-border/30 hover:border-primary/30
+                        transition-all duration-500
+                        ${featured ? 'rounded-2xl' : 'rounded-xl'}
+                    `}
+                    whileHover={{
+                        boxShadow: "0 25px 50px -12px rgba(201, 162, 39, 0.15)",
+                    }}
+                    style={{ transformStyle: "preserve-3d" }}
+                >
+                    {/* Image Container */}
+                    <div className="relative aspect-[3/4] w-full overflow-hidden bg-muted/20">
                         {/* Primary Image */}
-                        <Image
-                            src={perfume.images[0]}
-                            alt={perfume.name}
-                            fill
-                            className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:opacity-0 ease-out z-10"
-                        />
-                        {/* Secondary Image (Reveal on Hover) */}
-                        {perfume.images[1] && (
+                        <motion.div
+                            className="absolute inset-0"
+                            animate={{ scale: isHovered ? 1.05 : 1 }}
+                            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                        >
                             <Image
-                                src={perfume.images[1]}
-                                alt={`${perfume.name} Alternate`}
+                                src={perfume.images[0]}
+                                alt={perfume.name}
                                 fill
-                                className="object-cover transition-all duration-700 scale-110 group-hover:scale-100 opacity-0 group-hover:opacity-100 ease-out z-0"
+                                className="object-cover"
                             />
-                        )}
+                        </motion.div>
 
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-50 z-20 pointer-events-none" />
+                        {/* Overlay gradient */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60" />
 
-                        {/* Pagination Dots (Bottom Center) */}
-                        <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5 z-30">
-                            {perfume.images.slice(0, 3).map((_, idx) => (
-                                <div
-                                    key={idx}
-                                    className={`w-1.5 h-1.5 rounded-full shadow-sm transition-colors ${idx === 0 ? 'bg-white' : 'bg-white/40'}`}
-                                />
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Content Area */}
-                    <div className="flex flex-col flex-grow px-1 gap-3">
-
-                        {/* Row 1: Badge & Heart */}
-                        <div className="flex justify-between items-center">
-                            {perfume.badge ? (
-                                <Badge className="bg-primary/10 text-primary hover:bg-primary/20 text-[10px] px-2.5 py-1 font-medium tracking-wide border-none uppercase">
+                        {/* Badge */}
+                        {perfume.badge && (
+                            <motion.div
+                                className="absolute top-4 left-4 z-10"
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.1 }}
+                            >
+                                <Badge className="bg-primary/90 text-primary-foreground backdrop-blur-sm border-none px-3 py-1 text-[10px] font-semibold uppercase tracking-wider shadow-lg">
                                     {perfume.badge}
                                 </Badge>
-                            ) : (
-                                <span className="text-[10px] text-muted-foreground font-medium tracking-wide uppercase">
-                                    Luxury Scent
-                                </span>
-                            )}
-                            <button className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-muted/50 transition-colors group/heart">
-                                <Heart className="w-4 h-4 text-muted-foreground group-hover/heart:text-red-500 group-hover/heart:fill-red-500 transition-colors" />
-                            </button>
+                            </motion.div>
+                        )}
+
+                        {/* Wishlist Button */}
+                        <motion.button
+                            className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center border border-border/50 hover:border-primary hover:bg-background transition-all duration-300 group/heart"
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                // Handle wishlist
+                            }}
+                        >
+                            <Heart className="w-4 h-4 text-muted-foreground group-hover/heart:text-primary group-hover/heart:fill-primary/20 transition-all duration-300" />
+                        </motion.button>
+
+                        {/* Bottom Info Overlay - Shows on hover */}
+                        <motion.div
+                            className="absolute bottom-0 left-0 right-0 p-4 z-10"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 20 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            {/* Scent Notes */}
+                            <div className="flex flex-wrap gap-1.5 mb-3">
+                                {perfume.notes.slice(0, 3).map((note) => (
+                                    <span
+                                        key={note}
+                                        className="px-2 py-0.5 rounded-full bg-background/80 backdrop-blur-sm text-[10px] text-foreground border border-border/50"
+                                    >
+                                        {note}
+                                    </span>
+                                ))}
+                                {perfume.notes.length > 3 && (
+                                    <span className="px-2 py-0.5 rounded-full bg-primary/80 backdrop-blur-sm text-[10px] text-primary-foreground">
+                                        +{perfume.notes.length - 3}
+                                    </span>
+                                )}
+                            </div>
+
+                            {/* Quick Stats */}
+                            <div className="flex items-center gap-3">
+                                <div className="flex items-center gap-1 text-[10px] text-white/80">
+                                    <Clock className="w-3 h-3" />
+                                    <span>{perfume.longevity * 2}h</span>
+                                </div>
+                                <div className="flex items-center gap-1 text-[10px] text-white/80">
+                                    <Wind className="w-3 h-3" />
+                                    <span>{["Light", "Moderate", "Strong"][Math.min(perfume.sillage - 1, 2)]}</span>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="flex flex-col flex-grow p-4 gap-3">
+                        {/* Brand & Intensity */}
+                        <div className="flex justify-between items-center">
+                            <span className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground font-medium">
+                                {perfume.brand}
+                            </span>
+                            <span className={`text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-full font-medium ${getIntensityColor()}`}>
+                                {perfume.intensity}
+                            </span>
                         </div>
 
-                        {/* Row 2: Name */}
-                        <h3 className="text-xl font-serif font-bold text-foreground leading-tight group-hover:text-primary transition-colors duration-300 line-clamp-2">
+                        {/* Name */}
+                        <h3 className="text-lg font-serif font-semibold text-foreground leading-tight group-hover:text-primary transition-colors duration-300 line-clamp-2">
                             {perfume.name}
                         </h3>
 
-                        {/* Row 3: Price & Button */}
-                        <div className="mt-auto flex items-center justify-between pt-2">
-                            <div className="flex flex-col">
-                                <span className="text-xs text-muted-foreground font-medium uppercase tracking-wider">Price</span>
-                                <span className="text-lg font-bold text-foreground font-serif">
+                        {/* Description - Truncated */}
+                        <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">
+                            {perfume.description}
+                        </p>
+
+                        {/* Price & CTA */}
+                        <div className="mt-auto pt-3 flex items-end justify-between border-t border-border/30">
+                            <div>
+                                <span className="text-[10px] uppercase tracking-wider text-muted-foreground block mb-0.5">Price</span>
+                                <span className="text-xl font-serif font-bold text-foreground">
                                     ${perfume.price}
                                 </span>
                             </div>
-                            <button className="bg-foreground text-background px-6 py-2.5 rounded-full text-xs font-bold tracking-widest uppercase hover:bg-primary hover:text-black transition-all duration-300 shadow-lg hover:shadow-primary/25">
-                                Buy Now
-                            </button>
+                            <motion.button
+                                className="px-4 py-2 bg-foreground text-background rounded-full text-xs font-semibold uppercase tracking-wider hover:bg-primary transition-colors duration-300"
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    // Handle quick add
+                                }}
+                            >
+                                Add
+                            </motion.button>
                         </div>
                     </div>
-                </div>
+                </motion.div>
             </Link>
         </motion.div>
     );

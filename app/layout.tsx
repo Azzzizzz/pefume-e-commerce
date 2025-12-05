@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
-import { Cinzel, Work_Sans } from "next/font/google";
+import { Cormorant_Garamond, Work_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
 import { ThemeProvider } from "@/components/theme-provider";
 
-const cinzel = Cinzel({
-  variable: "--font-cinzel",
+const cormorantGaramond = Cormorant_Garamond({
+  variable: "--font-cormorant",
   subsets: ["latin"],
   display: "swap",
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
 const workSans = Work_Sans({
@@ -19,8 +21,8 @@ const workSans = Work_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "L'Obscur | Scents of the Night Bazaar",
-  description: "Luxury perfume boutique inspired by the mysteries of the night.",
+  title: "L'Obscur | Where Scent Becomes Art",
+  description: "An ultra-premium perfume maison crafting olfactory masterpieces for the nocturnal soul. Discover rare, artisanal fragrances inspired by midnight mysteries.",
 };
 
 export default function RootLayout({
@@ -29,15 +31,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <body
-        className={`${cinzel.variable} ${workSans.variable} antialiased bg-background text-foreground font-sans flex flex-col min-h-screen`}
+        className={`${cormorantGaramond.variable} ${workSans.variable} antialiased bg-background text-foreground font-sans flex flex-col min-h-screen`}
       >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
-          disableTransitionOnChange
+          disableTransitionOnChange={false}
         >
           <Header />
           <main className="flex-grow">
