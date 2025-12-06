@@ -74,7 +74,7 @@ export function ProductCard({ perfume, featured = false }: ProductCardProps) {
                     style={{ transformStyle: "preserve-3d" }}
                 >
                     {/* Image Container */}
-                    <div className="relative aspect-[3/4] w-full overflow-hidden bg-muted/20">
+                    <div className="relative aspect-[4/5] w-full overflow-hidden bg-muted/20">
                         {/* Primary Image */}
                         <motion.div
                             className="absolute inset-0"
@@ -95,12 +95,12 @@ export function ProductCard({ perfume, featured = false }: ProductCardProps) {
                         {/* Badge */}
                         {perfume.badge && (
                             <motion.div
-                                className="absolute top-4 left-4 z-10"
+                                className="absolute top-3 left-3 z-10"
                                 initial={{ opacity: 0, y: -10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.1 }}
                             >
-                                <Badge className="bg-primary/90 text-primary-foreground backdrop-blur-sm border-none px-3 py-1 text-[10px] font-semibold uppercase tracking-wider shadow-lg">
+                                <Badge className="bg-primary/90 text-primary-foreground backdrop-blur-sm border-none px-2.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider shadow-lg">
                                     {perfume.badge}
                                 </Badge>
                             </motion.div>
@@ -108,7 +108,7 @@ export function ProductCard({ perfume, featured = false }: ProductCardProps) {
 
                         {/* Wishlist Button */}
                         <motion.button
-                            className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center border border-border/50 hover:border-primary hover:bg-background transition-all duration-300 group/heart"
+                            className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center border border-border/50 hover:border-primary hover:bg-background transition-all duration-300 group/heart"
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.95 }}
                             onClick={(e) => {
@@ -116,28 +116,28 @@ export function ProductCard({ perfume, featured = false }: ProductCardProps) {
                                 // Handle wishlist
                             }}
                         >
-                            <Heart className="w-4 h-4 text-muted-foreground group-hover/heart:text-primary group-hover/heart:fill-primary/20 transition-all duration-300" />
+                            <Heart className="w-3.5 h-3.5 text-muted-foreground group-hover/heart:text-primary group-hover/heart:fill-primary/20 transition-all duration-300" />
                         </motion.button>
 
                         {/* Bottom Info Overlay - Shows on hover */}
                         <motion.div
-                            className="absolute bottom-0 left-0 right-0 p-4 z-10"
+                            className="absolute bottom-0 left-0 right-0 p-3 z-10"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 20 }}
                             transition={{ duration: 0.3 }}
                         >
                             {/* Scent Notes */}
-                            <div className="flex flex-wrap gap-1.5 mb-3">
+                            <div className="flex flex-wrap gap-1 mb-2">
                                 {perfume.notes.slice(0, 3).map((note) => (
                                     <span
                                         key={note}
-                                        className="px-2 py-0.5 rounded-full bg-background/80 backdrop-blur-sm text-[10px] text-foreground border border-border/50"
+                                        className="px-1.5 py-0.5 rounded-full bg-background/80 backdrop-blur-sm text-[9px] text-foreground border border-border/50"
                                     >
                                         {note}
                                     </span>
                                 ))}
                                 {perfume.notes.length > 3 && (
-                                    <span className="px-2 py-0.5 rounded-full bg-primary/80 backdrop-blur-sm text-[10px] text-primary-foreground">
+                                    <span className="px-1.5 py-0.5 rounded-full bg-primary/80 backdrop-blur-sm text-[9px] text-primary-foreground">
                                         +{perfume.notes.length - 3}
                                     </span>
                                 )}
@@ -145,11 +145,11 @@ export function ProductCard({ perfume, featured = false }: ProductCardProps) {
 
                             {/* Quick Stats */}
                             <div className="flex items-center gap-3">
-                                <div className="flex items-center gap-1 text-[10px] text-white/80">
+                                <div className="flex items-center gap-1 text-[9px] text-white/80">
                                     <Clock className="w-3 h-3" />
                                     <span>{perfume.longevity * 2}h</span>
                                 </div>
-                                <div className="flex items-center gap-1 text-[10px] text-white/80">
+                                <div className="flex items-center gap-1 text-[9px] text-white/80">
                                     <Wind className="w-3 h-3" />
                                     <span>{["Light", "Moderate", "Strong"][Math.min(perfume.sillage - 1, 2)]}</span>
                                 </div>
@@ -158,10 +158,10 @@ export function ProductCard({ perfume, featured = false }: ProductCardProps) {
                     </div>
 
                     {/* Content */}
-                    <div className="flex flex-col flex-grow p-4 gap-3">
+                    <div className="flex flex-col flex-grow p-3 gap-2">
                         {/* Brand & Intensity */}
                         <div className="flex justify-between items-center">
-                            <span className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground font-medium">
+                            <span className="text-[9px] uppercase tracking-[0.15em] text-muted-foreground font-medium">
                                 {perfume.brand}
                             </span>
                             <span className={`text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-full font-medium ${getIntensityColor()}`}>
@@ -170,17 +170,17 @@ export function ProductCard({ perfume, featured = false }: ProductCardProps) {
                         </div>
 
                         {/* Name */}
-                        <h3 className="text-lg font-serif font-semibold text-foreground leading-tight group-hover:text-primary transition-colors duration-300 line-clamp-2">
+                        <h3 className="text-base font-serif font-semibold text-foreground leading-tight group-hover:text-primary transition-colors duration-300 line-clamp-1">
                             {perfume.name}
                         </h3>
 
                         {/* Description - Truncated */}
-                        <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">
+                        <p className="text-[11px] text-muted-foreground line-clamp-2 leading-relaxed">
                             {perfume.description}
                         </p>
 
                         {/* Price & CTA */}
-                        <div className="mt-auto pt-3 flex items-end justify-between border-t border-border/30">
+                        <div className="mt-auto pt-2 flex items-end justify-between border-t border-border/30">
                             <div>
                                 <span className="text-[10px] uppercase tracking-wider text-muted-foreground block mb-0.5">Price</span>
                                 <span className="text-xl font-serif font-bold text-foreground">

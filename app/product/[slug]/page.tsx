@@ -138,8 +138,8 @@ export default function ProductPage() {
                                         key={idx}
                                         onClick={() => setSelectedImageIndex(idx)}
                                         className={`relative w-20 h-24 flex-shrink-0 rounded-lg overflow-hidden border-2 transition-all duration-300 ${selectedImageIndex === idx
-                                                ? "border-primary shadow-gold"
-                                                : "border-border/30 opacity-60 hover:opacity-100"
+                                            ? "border-primary shadow-gold"
+                                            : "border-border/30 opacity-60 hover:opacity-100"
                                             }`}
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
@@ -321,16 +321,10 @@ export default function ProductPage() {
                     transition={{ duration: 0.6 }}
                     className="mb-24"
                 >
-                    <div className="text-center mb-12">
-                        <span className="text-overline text-primary mb-4 block">The Composition</span>
-                        <h2>Olfactory Journey</h2>
-                    </div>
-
                     <ScentPyramid
                         topNotes={topNotes.length > 0 ? topNotes : product.notes.slice(0, 1)}
                         heartNotes={heartNotes.length > 0 ? heartNotes : product.notes.slice(1, 2)}
                         baseNotes={baseNotes.length > 0 ? baseNotes : product.notes.slice(2)}
-                        className="max-w-2xl mx-auto"
                     />
                 </motion.div>
 

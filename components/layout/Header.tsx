@@ -7,14 +7,24 @@ import { ShoppingBag, Menu, X, Search, Sun, Moon, Sparkles } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
+import { useNavigation } from "@/components/providers/navigation-provider";
+
 
 export function Header() {
     const pathname = usePathname();
+    const { startNavigation } = useNavigation();
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const { setTheme, resolvedTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
+
+    // Handle navigation with loader
+    const handleNavigation = (href: string) => {
+        if (href !== pathname) {
+            startNavigation();
+        }
+    };
 
     // Header is transparent (white text) only on Home page when not scrolled
     const isHome = pathname === "/";
@@ -30,6 +40,7 @@ export function Header() {
     }, []);
 
     const navLinks = [
+        { href: "/", label: "Home" },
         { href: "/collection", label: "Collections" },
         { href: "/collection", label: "Shop All" },
         { href: "/about", label: "Our Story" },
@@ -62,7 +73,7 @@ export function Header() {
                     </button>
 
                     {/* Logo */}
-                    <Link href="/" className="group flex items-center gap-2">
+                    <Link href="/" onClick={() => handleNavigation("/")} className="group flex items-center gap-2">
                         <motion.span
                             className="text-2xl md:text-3xl font-serif font-bold tracking-[0.15em]"
                             whileHover={{ scale: 1.02 }}
@@ -82,6 +93,7 @@ export function Header() {
                             <Link
                                 key={link.label}
                                 href={link.href}
+                                onClick={() => handleNavigation(link.href)}
                                 className={cn(
                                     "relative text-sm uppercase tracking-[0.2em] transition-colors duration-300 underline-reveal py-1 drop-shadow-sm",
                                     !isTransparent
@@ -141,7 +153,7 @@ export function Header() {
                         </motion.button>
 
                         {/* Cart */}
-                        <Link href="/cart">
+                        <Link href="/cart" onClick={() => handleNavigation("/cart")}>
                             <motion.div
                                 className={cn(
                                     "relative w-10 h-10 rounded-full flex items-center justify-center hover:bg-muted/50 transition-colors duration-300",

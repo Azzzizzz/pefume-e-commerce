@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Work_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { NavigationProvider } from "@/components/providers/navigation-provider";
 
 import { ThemeProvider } from "@/components/theme-provider";
 
@@ -41,11 +42,13 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange={false}
         >
-          <Header />
-          <main className="flex-grow">
-            {children}
-          </main>
-          <Footer />
+          <NavigationProvider>
+            <Header />
+            <main className="flex-grow">
+              {children}
+            </main>
+            <Footer />
+          </NavigationProvider>
         </ThemeProvider>
       </body>
     </html>
