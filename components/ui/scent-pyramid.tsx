@@ -181,15 +181,6 @@ function GlowingPyramid({
                 </group>
             ))}
 
-            {/* Sparkles for premium effect */}
-            <Sparkles
-                count={50}
-                scale={8}
-                size={3}
-                speed={0.3}
-                opacity={0.5}
-                color="#D4AF37"
-            />
         </group>
     );
 }
